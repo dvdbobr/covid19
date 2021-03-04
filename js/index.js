@@ -1,4 +1,6 @@
-const proxy = 'https://api.allorigins.win/raw?url=';
+const proxy = 'https://api.codetabs.com/v1/proxy/?quest=';
+
+
 const coutriesEndpoint = 'https://restcountries.herokuapp.com/api/v1';
 const covidStats = 'https://corona-api.com/countries';
 const continents = document.querySelector('.continents');
