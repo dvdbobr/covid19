@@ -27,17 +27,30 @@
         .status {
             margin-top: 2rem;
         }
-        .continents{
+
+        .continents {
             margin-top: 3rem;
         }
+
         .canvasCon {
             width: 100vw;
             height: 400px;
             margin: 0 auto;
         }
-        .countries{
-            margin: 2rem 2rem;
+
+        .countries {
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            width: 80vw;
+            height: 20vh;
         }
+        .countries span{
+            cursor: pointer;
+        }
+
+       
     </style>
 </head>
 
