@@ -94,10 +94,7 @@ async function divideContinentArr() {
 async function getDataOfCountryInContinent() {
     const countriesInContinent = await getCountryByContinent(currentContinent);//get name and code from current continenet
     const infoAboutCountries = await getCovidStatsOfAllCountries();//get the stats if the name is in the contintent
-    console.log("this is countriesInContinent", countriesInContinent)
     let infoAboutCountriesArr = [];
-    console.log("this is infoAboutCountries", infoAboutCountries)
-
     if (currentContinent == 'world') {
         infoAboutCountries.forEach(countryInfo => {
             infoAboutCountriesArr.push(countryInfo);
@@ -113,7 +110,6 @@ async function getDataOfCountryInContinent() {
             }
         });
     }
-    console.log("after filter", infoAboutCountriesArr)
     return infoAboutCountriesArr;
 }
 //get stats of all countries and put them into object with relevant data
@@ -129,7 +125,6 @@ async function getCovidStatsOfAllCountries() {
             })
         })
     )
-    //console.log(covidInfo)
     return covidInfo;
 }
 
@@ -143,7 +138,6 @@ async function getStatsByCountryCode(code) {
             totalDeaths: countryData.latest_data.deaths, newDeaths: countryData.timeline[0].new_deaths,
             totalRecovered: countryData.latest_data.recovered, critical: countryData.latest_data.critical
         }
-        //console.log("code", countryData.code, "this is", countryData.name, "stats", stats);
         return stats
     }
     else {
@@ -152,7 +146,6 @@ async function getStatsByCountryCode(code) {
             totalDeaths: countryData.latest_data.deaths, newDeaths: "unknown",
             totalRecovered: countryData.latest_data.recovered, critical: countryData.latest_data.critical
         }
-        //console.log("code", countryData.code, "this is", countryData.name, "stats", stats);
         return stats
     }
 }
@@ -187,7 +180,6 @@ continents.addEventListener('click', async (e) => {
     buttons.disabled = true;
     countries.innerHTML = '';
     const countriesInContinent = await getCountryByContinent(e.target.classList[0]);
-    console.log(countriesInContinent)
     continentLabels = [];
     countries.innerHTML = '<option selected disabled>Choose A Country</option>'
     if (currentContinent != 'world') {
@@ -213,7 +205,6 @@ continents.addEventListener('click', async (e) => {
     }
     spinner.classList.add('hidden');
     buttons.disabled = false;
-    console.log("current chart labels:", currentChartData.labelArr)
     myChart.data.datasets[0].label = currentStatus + " in " + currentContinent;
     myChart.data.datasets[0].backgroundColor = getColor();
     bar.data.datasets[0].label = currentStatus + " in " + currentContinent;
@@ -232,9 +223,7 @@ continents.addEventListener('click', async (e) => {
 status.addEventListener('click', async (e) => {
     spinner.classList.remove('hidden');
     buttons.disabled = true;
-    console.log("current continent is:", currentContinent)
     const info = await getDataOfCountryInContinent();
-    console.log("this is info", info)
     currentStatus = e.target.classList[0];
     if (currentContinent != 'world') {
         await getContinentData(currentStatus);
@@ -251,8 +240,6 @@ status.addEventListener('click', async (e) => {
     }
     spinner.classList.add('hidden');
     buttons.disabled = false;
-    console.log("current status", currentStatus)
-    console.log("current chart data:", currentChartData.dataArr)
     myChart.data.datasets[0].backgroundColor = getColor();
     myChart.data.datasets[0].label = currentStatus + " in " + currentContinent;
     bar.data.datasets[0].label = currentStatus + " in " + currentContinent;
@@ -271,7 +258,6 @@ countries.addEventListener('change', async (e) => {
     countryStatsPopup.innerHTML = '';
     countryStatsPopup.style.visibility = "visible";
     let chosenCountry = countries.options[countries.selectedIndex].getAttribute('code');
-    console.log(chosenCountry)
     let countryStats = await getStatsByCountryCode(chosenCountry);
     countryStatsPopup.innerHTML = `
     <div class="countryStats-content">
