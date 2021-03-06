@@ -7,71 +7,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid-19</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <style>
-        * {
-            box-sizing: 0;
-            padding: 0;
-            margin: 0;
-        }
-
-        .flex {
-            display: flex;
-            width: 100vw;
-            justify-content: space-evenly;
-        }
-
-        button {
-            font-size: 3rem;
-        }
-
-        .status {
-            margin-top: 2rem;
-        }
-
-        .continents {
-            margin-top: 3rem;
-        }
-
-        .canvasCon {
-            width: 100vw;
-            height: 400px;
-            margin: 0 auto;
-        }
-
-        .countries {
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: repeat(9, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            width: 80vw;
-            height: 20vh;
-        }
-        .countries span{
-            cursor: pointer;
-        }
-
-       
-    </style>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/spinner.css">
+    <link rel="stylesheet" href="/css/media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+        crossorigin="anonymous" />
 </head>
 
-<body>
-    <div class="flex status">
-        <button class="confirmed">Confirmed</button>
-        <button class="deaths">Deaths</button>
-        <button class="recovered">Recovered</button>
-        <button class="critical">Critical</button>
+<body onload="init()">
+    <div class="container">
+        <div class="spinner hidden">
+            <div class="box">
+                <div class="body ">
+                    <div class="details">
+                        <div class="r-detail">
+                        </div>
+                        <div class="m-detail">
+                        </div>
+                        <div class="mm-detail">
+                        </div>
+                        <div class="l-detail">
+                        </div>
+                    </div>
+                    <div class="shapes">
+                        <div class="b-shape">
+                        </div>
+                        <div class="t-shape">
+                        </div>
+                        <div class="rb-shape">
+                        </div>
+                        <div class="tm-shape">
+                        </div>
+                        <div class="lm-shape">
+                        </div>
+                        <div class="rm-shape">
+                        </div>
+                        <div class="bm-shape">
+                        </div>
+                        <div class="lt-shape">
+                        </div>
+                    </div>
+                    <div class="sm-details">
+                        <div class="r-detail">
+                        </div>
+                        <div class="m-detail">
+                        </div>
+                        <div class="mm-detail">
+                        </div>
+                        <div class="l-detail">
+                        </div>
+                    </div>
+                    <div class="sm-shapes">
+                        <div class="b-shape">
+                        </div>
+                        <div class="t-shape">
+                        </div>
+                        <div class="rb-shape">
+                        </div>
+                        <div class="tm-shape">
+                        </div>
+                        <div class="lm-shape">
+                        </div>
+                        <div class="rm-shape">
+                        </div>
+                        <div class="bm-shape">
+                        </div>
+                        <div class="lt-shape">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="centered">
+                    <div class="text">
+                        COVID-19
+                    </div>
+                </div>
+                <div class="message">
+                    Please wait...
+                </div>
+            </div>
+        </div>
+        <div class="canvasCon">
+            <canvas id="myChart" style="display: none;"></canvas>
+            <canvas id="bar"></canvas>
+        </div>
+        <div class="flex status">
+            <button class="confirmed">Confirmed</button>
+            <button class="deaths">Deaths</button>
+            <button class="recovered">Recovered</button>
+            <button class="critical">Critical</button>
+        </div>
+        <div class="flex continents">
+            <button class="Asia">Asia</button>
+            <button class="Europe">Europe</button>
+            <button class="Africa">Africa</button>
+            <button class="Americas">Americas</button>
+            <button class="world">World</button>
+        </div>
+
+        <div class="countriesDiv">
+            <select class="countries"></select>
+        </div>
+
     </div>
-    <div class="flex continents">
-        <button class="Asia">Asia</button>
-        <button class="Europe">Europe</button>
-        <button class="Africa">Africa</button>
-        <button class="Americas">Americas</button>
-        <button class="world">World</button>
-    </div>
-    <div class="canvasCon">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="countries"></div>
     <script src="/js/index.js"></script>
     <script src="/js/chart.js"></script>
 </body>

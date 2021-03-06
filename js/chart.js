@@ -1,28 +1,63 @@
 var ctx = document.getElementById('myChart').getContext('2d');
-ctx.canvas.parentNode.style.width = "90vw";
-ctx.canvas.parentNode.style.height = "600px";
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: continentLabels,
+        labels: "world confirmed",
         datasets: [{
-            label: "Covid 19 recoverd",
-            data: continentData,
+            label: currentChartData.labelArr,
+            data: currentChartData.dataArr,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                getColor(),
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            labels: {
+                fontColor: 'black',
+                fontSize: 20,
+                fontFamily:"Varela Round,Arial,sans-serif"
+            }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor: 'black',
+                    fontSize: 18,
+                    fontFamily: "Varela Round,Arial,sans-serif"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: 'black',
+                    fontSize: 12,
+                    fontFamily: "Varela Round,Arial,sans-serif"
+                }
+            }]
+        }
+    }
+});
+
+var ctx2 = document.getElementById('bar').getContext('2d');
+var bar = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ["Asia", "Europe", "Africa", "Americas"],
+        datasets: [{
+            label: currentStatus + " in " + currentContinent,
+            data: currentChartData.dataArr,
+            backgroundColor: [
+                getColor(),
+                getColor(),
+                getColor(),
+                getColor(),
             ],
             borderWidth: 1
         }]
@@ -30,12 +65,36 @@ var myChart = new Chart(ctx, {
     options: {
         responsive: true,
         maintainAspectRatio: false,
+        legend: {
+            labels: {
+                fontColor: 'black',
+                fontSize: 20,
+                fontFamily:"Varela Round,Arial,sans-serif"
+            }
+        },
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    fontColor: 'black',
+                    fontSize: 18,
+                    fontFamily: "Varela Round,Arial,sans-serif"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: 'black',
+                    fontSize: 18,
+                    fontFamily: "Varela Round,Arial,sans-serif"
                 }
             }]
         }
     }
 });
+
+function getColor() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    return `rgba(${red},${green},${blue}, 0.6)`
+}

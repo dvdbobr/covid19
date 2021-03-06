@@ -1,0 +1,33 @@
+
+@media (max-width: 1200px) {
+    .canvasCon{
+        width: 80vw;
+        height: 350px;
+    }
+    .flex{
+        font-size: 2rem;
+    }
+    .countries {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 900px) {
+    .canvasCon{
+        width: 100vw;
+        height: 300px;
+    }
+    .flex{
+        font-size: 1.6rem;
+    }
+    .countries {
+        font-size: 1rem;
+    }
+    .stat-row h4{
+        margin: 0 2px;
+        font-size:.9rem;
+        border: 1px solid black;
+    }
+    .countryStats-content {
+        width: 85vw;
+    }
+}
